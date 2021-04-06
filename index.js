@@ -17,7 +17,9 @@ const schedule = require('node-schedule');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.start((ctx) =>
   ctx.reply(
-    `Bienvenido al ClimaBot, bot encargado de informar diariamente el clima de la ciudad.`
+    `Bienvenido al ClimaBot, bot encargado de informar diariamente el clima de la ciudad. 
+    
+    Escriba "clima" para obtener informacion sobre el clima de su ciudad.`
   )
 );
 
