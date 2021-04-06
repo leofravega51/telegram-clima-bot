@@ -21,6 +21,8 @@ bot.start((ctx) =>
   )
 );
 
+//We get the weather information and send it when the bot hears "clima"
+
 bot.hears("clima", async (ctx) => {
   const clima = await axios
     .get(`https://api.openweathermap.org/data/2.5/weather?lat=${process.env.LAT}&lon=${process.env.LONG}&appid=${process.env.API_KEY}`)
@@ -32,18 +34,6 @@ bot.hears("clima", async (ctx) => {
   return ctx.reply(`La temperatura hoy en ${clima.name} es de ${kelvinToCelsius(clima.main.temp)}`);
 });
 
-
-const job = schedule.scheduleJob('00 00 08 * * *', async () => {
-
-  const clima = await axios
-    .get(`https://api.openweathermap.org/data/2.5/weather?lat=${process.env.LAT}&lon=${process.env.LONG}&appid=${process.env.API_KEY}`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => console.log("Error de API", error));
-
-  bot.telegram.sendMessage(`${process.env.CHAT_ID}`, `La temperatura hoy en ${clima.name} es de ${kelvinToCelsius(clima.main.temp)}`);
-});
 bot.launch();
 
 
