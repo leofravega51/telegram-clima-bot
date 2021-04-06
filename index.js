@@ -1,7 +1,7 @@
 const { Telegraf } = require("telegraf");
 require("dotenv").config();
 const axios = require("axios");
-const express = require('express')
+import express from 'express';
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
