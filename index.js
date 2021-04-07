@@ -1,14 +1,14 @@
 const { Telegraf } = require("telegraf");
 require("dotenv").config();
 const axios = require("axios");
-// const app = require('express');
-// const http = require('http');
-// const server = http.Server(app);
-// const PORT = process.env.PORT || 5000
+const app = require('express');
+const http = require('http');
+const server = http.Server(app);
+const PORT = process.env.PORT || 5000
 
 
 
-// server.listen(PORT, () => console.log(`Listening on port ${ PORT }`));
+server.listen(PORT, () => console.log(`Listening on port ${ PORT }`));
 
 const kelvinToCelsius = require('kelvin-to-celsius');
 const schedule = require('node-schedule');
