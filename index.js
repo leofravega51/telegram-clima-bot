@@ -17,23 +17,23 @@ const schedule = require('node-schedule');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.start((ctx) =>
   ctx.reply(
-    `Bienvenido al ClimaBot, bot encargado de informar diariamente el clima de la ciudad. 
+    `Bienvenido al ClimaBot, bot encargado de informar diariamente el tiempo de la ciudad. 
     
-    Escriba "clima" para obtener informacion sobre el clima de su ciudad.`
+     Escriba "tiempo" para obtener informacion sobre el tiempo de su ciudad.`
   )
 );
 
-//We get the weather information and send it when the bot hears "clima"
+//We get the weather information and send it when the bot hears "tiempo"
 
-bot.hears("clima", async (ctx) => {
-  const clima = await axios
+bot.hears("tiempo", async (ctx) => {
+  const tiempo = await axios
     .get(`https://api.openweathermap.org/data/2.5/weather?lat=${process.env.LAT}&lon=${process.env.LONG}&appid=${process.env.API_KEY}`)
     .then((response) => {
       return response.data;
     })
     .catch((error) => console.log("Error de API", error));
 
-  return ctx.reply(`La temperatura hoy en ${clima.name} es de ${kelvinToCelsius(clima.main.temp)}`);
+  return ctx.reply(`La temperatura hoy en ${tiempo.name} es de ${kelvinToCelsius(tiempo.main.temp)}°`);
 });
 
 bot.launch();
